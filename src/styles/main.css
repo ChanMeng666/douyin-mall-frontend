@@ -1,5 +1,6 @@
+/*用于全局样式*/
 :root {
-    /* Define your color variables */
+    /* Define color variables */
     --primary-color: #fe2c55;
     --text-color: #333;
     --text-light: #666;
