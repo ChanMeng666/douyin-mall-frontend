@@ -1,3 +1,42 @@
+<!--<template>-->
+<!--  <div class="container">-->
+<!--    <h1 class="page-title">商品列表</h1>-->
+<!--    <div v-if="loading" class="loading-state">加载中...</div>-->
+<!--    <div v-else-if="error" class="error-state">{{ error }}</div>-->
+<!--    <div v-else class="products-grid">-->
+<!--      <div v-for="product in products"-->
+<!--           :key="product.product_id"-->
+<!--           class="product-card"-->
+<!--           @click="navigateToDetail(product.product_id)"-->
+<!--      >-->
+<!--        <div class="product-image">-->
+<!--          <img-->
+<!--            :src="product.image_url || '/api/placeholder/300/300'"-->
+<!--            :alt="product.name"-->
+<!--            @error="handleImageError"-->
+<!--          />-->
+<!--        </div>-->
+<!--        <div class="product-info">-->
+<!--          <h2 class="product-title">{{ product.name }}</h2>-->
+<!--          <p class="product-description">{{ product.description }}</p>-->
+<!--          <div class="product-footer">-->
+<!--            <span class="product-price">¥{{ product.price }}</span>-->
+<!--            <span class="product-stock">-->
+<!--              库存: {{ product.stock }}-->
+<!--              <span :class="[-->
+<!--                'status-badge',-->
+<!--                product.status === 'active' ? 'status-active' : 'status-inactive'-->
+<!--              ]">-->
+<!--                {{ product.status === 'active' ? '在售' : '下架' }}-->
+<!--              </span>-->
+<!--            </span>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</template>-->
+
 <template>
   <div class="container">
     <h1 class="page-title">商品列表</h1>
@@ -5,10 +44,16 @@
     <div v-else-if="error" class="error-state">{{ error }}</div>
     <div v-else class="products-grid">
       <div v-for="product in products"
-           :key="product.product_id"
-           class="product-card">
+           :key="product.productId"
+           class="product-card"
+           @click="navigateToDetail(product)"
+      >
         <div class="product-image">
-<!--          <img src="/api/placeholder/300/300" alt="Product image" />-->
+          <img
+            :src="product.imageUrl || '/api/placeholder/300/300'"
+            :alt="product.name"
+            @error="handleImageError"
+          />
         </div>
         <div class="product-info">
           <h2 class="product-title">{{ product.name }}</h2>
@@ -50,6 +95,8 @@
 }
 
 .product-card {
+  cursor: pointer;
+
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -150,21 +197,78 @@
 }
 </style>
 
+<!--<script setup lang="ts">-->
+<!--import { ref, computed, onMounted } from 'vue'-->
+<!--import { useProductStore } from '../stores/productStore.ts'-->
+<!--import type { Product } from '../types'-->
+
+
+
+<!--import { useRouter } from 'vue-router'-->
+
+<!--const router = useRouter()-->
+
+<!--const navigateToDetail = (productId: number) => {-->
+<!--  router.push(`/product/${productId}`)-->
+<!--}-->
+
+
+
+<!--const productStore = useProductStore()-->
+<!--const loading = ref(true)-->
+<!--const error = ref<string | null>(null)-->
+
+<!--const products = computed((): Product[] => productStore.products)-->
+
+<!--onMounted(async () => {-->
+<!--  try {-->
+<!--    await productStore.fetchProducts()-->
+<!--  } catch (e) {-->
+<!--    error.value = e instanceof Error ? e.message : '加载商品失败'-->
+<!--  } finally {-->
+<!--    loading.value = false-->
+<!--  }-->
+<!--})-->
+<!--</script>-->
+
+
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import { useProductStore } from '../stores/productStore.ts'
+import { useProductStore } from '../stores/productStore'
+import { useRouter } from 'vue-router'
 import type { Product } from '../types'
 
+const router = useRouter()
 const productStore = useProductStore()
 const loading = ref(true)
 const error = ref<string | null>(null)
 
-const products = computed((): Product[] => productStore.products)
+const products = computed(() => {
+  const productsList = productStore.products
+  console.log('Products in component:', productsList)
+  return productsList
+})
+
+const navigateToDetail = (product: Product) => {
+  console.log('Product in navigateToDetail:', product)
+  if (product && product.productId) {
+    console.log('Navigating to product:', product.productId)
+    router.push(`/product/${product.productId}`)
+  } else {
+    console.error('Invalid product or productId:', product)
+  }
+}
+
+const handleImageError = (e: Event) => {
+  const img = e.target as HTMLImageElement
+  img.src = '/api/placeholder/300/300'
+}
 
 onMounted(async () => {
   try {
     await productStore.fetchProducts()
   } catch (e) {
+    console.error('Error in onMounted:', e)
     error.value = e instanceof Error ? e.message : '加载商品失败'
   } finally {
     loading.value = false

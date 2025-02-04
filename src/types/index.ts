@@ -1,16 +1,35 @@
+// export interface Product {
+//   product_id: number;
+//   name: string;
+//   description: string;
+//   price: number;
+//   stock: number;
+//   status: 'active' | 'inactive';
+//   created_at: string;
+//   updated_at: string;
+// }
+//
+// export interface ProductResponse {
+//   code: string;
+//   info: string;
+//   data: Product[];
+// }
+
+
 export interface Product {
-  product_id: number;
+  productId: number;  // 改为 productId 以匹配后端
   name: string;
   description: string;
   price: number;
   stock: number;
   status: 'active' | 'inactive';
-  created_at: string;
-  updated_at: string;
+  imageUrl: string | null;  // 改为 imageUrl
+  createdAt: string;  // 改为 createdAt
+  updatedAt: string;  // 改为 updatedAt
 }
 
 export interface ProductResponse {
   code: string;
   info: string;
-  data: Product[];
+  data: Product[] | Product;
 }
