@@ -6,6 +6,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import CartView from '@/views/CartView.vue'
 import OrderList from '@/views/OrderList.vue'
 import OrderDetail from '@/views/OrderDetail.vue'
+import PaymentPage from '@/components/PaymentPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +48,11 @@ const router = createRouter({
       name: 'order-detail',
       component: OrderDetail,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/payment/:orderId',
+      name: 'payment',
+      component: PaymentPage
     }
   ]
 })

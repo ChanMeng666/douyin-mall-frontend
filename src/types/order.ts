@@ -1,27 +1,30 @@
 export interface Order {
-  order_id: number;
-  user_id: number;
-  total_amount: number;
-  status: 'pending' | 'paid' | 'cancelled';
-  pay_type: 1 | 2 | 3; // 1: alipay, 2: wechat, 3: credit card
-  pay_time: string | null;
-  created_at: string;
-  updated_at: string;
+  orderId: number;
+  userId: number;
+  totalAmount: number;
+  status: OrderStatus;
+  payType?: PaymentType;
+  payTime?: string;
+  createdAt: string;
+  updatedAt: string;
+  items: OrderItem[];
 }
 
+export type OrderStatus = 'pending' | 'paid' | 'cancelled' | 'completed';
+export type PaymentType = 1 | 2 | 3; // 1: alipay, 2: wechat, 3: credit card
+
 export interface OrderItem {
-  order_item_id: number;
-  order_id: number;
-  product_id: number;
+  orderItemId: number;
+  productId: number;
   quantity: number;
   price: number;
-  created_at: string;
-  updated_at: string;
+  productName: string;
+  productImage?: string;
 }
 
 export interface CreateOrderRequest {
   products: Array<{
-    product_id: number;
+    productId: number;
     quantity: number;
   }>;
 }

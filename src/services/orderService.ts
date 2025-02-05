@@ -15,12 +15,17 @@ export const orderService = {
   },
 
   async getOrderById(orderId: number): Promise<OrderResponse> {
-    const response = await axios.get<OrderResponse>(`${BASE_URL}/order/${orderId}`)
+    const response = await axios.get<OrderResponse>(`${BASE_URL}/order/get/${orderId}`)
     return response.data
   },
 
   async cancelOrder(orderId: number): Promise<OrderResponse> {
-    const response = await axios.post<OrderResponse>(`${BASE_URL}/order/${orderId}/cancel`)
+    const response = await axios.post<OrderResponse>(`${BASE_URL}/order/cancel/${orderId}`)
+    return response.data
+  },
+
+  async checkOrderStatus(orderId: number): Promise<OrderResponse> {
+    const response = await axios.get<OrderResponse>(`${BASE_URL}/order/status/${orderId}`)
     return response.data
   }
 }
