@@ -3,7 +3,7 @@ import ProductList from '@/views/ProductList.vue'
 import ProductDetail from '@/views/ProductDetail.vue'
 import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
-
+import CartView from '@/views/CartView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -31,7 +31,8 @@ const router = createRouter({
     {
       path: '/cart',
       name: 'cart',
-      component: () => import('@/views/CartView.vue')
+      component: CartView,
+      meta: { requiresAuth: true }
     },
     {
       path: '/orders',

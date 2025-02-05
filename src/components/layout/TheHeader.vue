@@ -87,9 +87,13 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
+import { useCartStore } from '@/stores/cartStore'
+import { storeToRefs } from 'pinia'
 
 const userStore = useUserStore()
 const router = useRouter()
+const cartStore = useCartStore()
+const { itemCount } = storeToRefs(cartStore)
 
 const handleLogout = async () => {
   try {
@@ -112,11 +116,14 @@ const handleLogout = async () => {
 
       <nav class="nav-links">
         <router-link to="/" class="nav-link">首页</router-link>
+        <router-link to="/cart" class="nav-link cart-link">
+          购物车
+          <span v-if="itemCount > 0" class="cart-badge">{{ itemCount }}</span>
+        </router-link>
       </nav>
 
       <div class="right">
         <template v-if="userStore.isAuthenticated">
-          <router-link to="/cart" class="nav-link">购物车</router-link>
           <router-link to="/orders" class="nav-link">我的订单</router-link>
           <div class="user-menu">
             <span class="username">{{ userStore.currentUser?.username }}</span>
@@ -208,5 +215,22 @@ const handleLogout = async () => {
 .register {
   color: var(--primary-color);
   font-weight: 500;
+}
+
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cart-badge {
+  background: var(--primary-color);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1rem;
+  position: absolute;
+  top: -0.5rem;
+  right: -1rem;
 }
 </style>
