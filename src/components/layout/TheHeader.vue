@@ -89,6 +89,7 @@ import { useUserStore } from '@/stores/userStore'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cartStore'
 import { storeToRefs } from 'pinia'
+import { RouterLink } from 'vue-router'
 
 const userStore = useUserStore()
 const router = useRouter()
@@ -114,25 +115,20 @@ const handleLogout = async () => {
         </router-link>
       </div>
 
-      <nav class="nav-links">
-        <router-link to="/" class="nav-link">首页</router-link>
-        <router-link to="/cart" class="nav-link cart-link">
-          购物车
-          <span v-if="itemCount > 0" class="cart-badge">{{ itemCount }}</span>
-        </router-link>
+      <nav class="nav">
+        <RouterLink to="/" class="nav-link">首页</RouterLink>
+        <RouterLink to="/cart" class="nav-link">购物车</RouterLink>
+        <RouterLink to="/orders" class="nav-link">我的订单</RouterLink>
+        <RouterLink to="/login" class="nav-link">登录</RouterLink>
+        <RouterLink to="/register" class="nav-link">注册</RouterLink>
       </nav>
 
       <div class="right">
         <template v-if="userStore.isAuthenticated">
-          <router-link to="/orders" class="nav-link">我的订单</router-link>
           <div class="user-menu">
             <span class="username">{{ userStore.currentUser?.username }}</span>
             <button class="logout-btn" @click="handleLogout">退出登录</button>
           </div>
-        </template>
-        <template v-else>
-          <router-link to="/login" class="nav-link">登录</router-link>
-          <router-link to="/register" class="nav-link register">注册</router-link>
         </template>
       </div>
     </div>
@@ -164,20 +160,25 @@ const handleLogout = async () => {
   text-decoration: none;
 }
 
-.nav-links {
+.nav {
   display: flex;
   gap: 2rem;
 }
 
 .nav-link {
-  color: #666;
+  color: #333;
   text-decoration: none;
   font-size: 1rem;
-  transition: color 0.2s;
+  transition: color 0.3s;
 }
 
 .nav-link:hover {
-  color: var(--primary-color);
+  color: #1890ff;
+}
+
+.nav-link.router-link-active {
+  color: #1890ff;
+  font-weight: bold;
 }
 
 .right {
