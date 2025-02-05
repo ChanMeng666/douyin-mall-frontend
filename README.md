@@ -1,61 +1,109 @@
-# douyin-mall-frontend
+# 抖音商城前端
 
-This template should help get you started developing with Vue 3 in Vite.
+## 项目介绍
 
-## Recommended IDE Setup
+这是一个基于 Vue 3 + TypeScript 开发的抖音电商平台前端项目。项目采用现代前端技术栈，实现了完整的电商购物流程，包括商品浏览、购物车管理、订单处理和支付功能。
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 技术栈
 
-## Type Support for `.vue` Imports in TS
+- Vue 3
+- TypeScript
+- Vite
+- Pinia
+- Vue Router
+- Axios
+- Vitest
+- Cypress
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## 主要功能
 
-## Customize configuration
+- 用户认证（登录/注册）
+- 商品列表展示
+- 商品详情页
+- 购物车管理
+- 订单管理
+- 支付流程
+- 响应式设计
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## 开发环境要求
 
-## Project Setup
+- Node.js >= 18.0.0
+- npm >= 9.0.0
 
-```sh
+## 项目设置
+
+### 安装依赖
+
+```bash
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### 开发环境运行
 
-```sh
+```bash
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### 生产环境构建
 
-```sh
+```bash
 npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### 运行单元测试
 
-```sh
+```bash
 npm run test:unit
 ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+### 运行端到端测试
 
-```sh
+```bash
 npm run test:e2e:dev
 ```
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+## 项目结构
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
+```
+src/
+├── assets/         # 静态资源
+├── components/     # 公共组件
+├── services/       # API 服务
+├── stores/         # Pinia 状态管理
+├── styles/         # 全局样式
+├── types/          # TypeScript 类型定义
+└── views/          # 页面组件
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+## 环境变量配置
 
-```sh
-npm run lint
+项目使用 `.env` 文件进行环境配置，需要配置以下环境变量：
+
 ```
+VITE_API_BASE_URL=你的API基础URL
+```
+
+## 代码规范
+
+- 使用 ESLint 进行代码检查
+- 使用 Prettier 进行代码格式化
+- 遵循 Vue 3 组合式 API 的最佳实践
+
+## 浏览器支持
+
+- Chrome >= 87
+- Firefox >= 78
+- Safari >= 14
+- Edge >= 88
+
+## 贡献指南
+
+1. Fork 本仓库
+2. 创建你的特性分支 (git checkout -b feature/AmazingFeature)
+3. 提交你的更改 (git commit -m 'Add some AmazingFeature')
+4. 推送到分支 (git push origin feature/AmazingFeature)
+5. 开启一个 Pull Request
+
+## 许可证
+
+本项目使用 Apache License 2.0 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情
