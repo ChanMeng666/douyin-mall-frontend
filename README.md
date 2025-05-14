@@ -1,5 +1,7 @@
 # 抖音商城前端
 
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/ChanMeng666/douyin-mall-frontend)
+
 ## 项目介绍
 
 这是一个基于 Vue 3 + TypeScript 开发的抖音电商平台前端项目。项目采用现代前端技术栈，实现了完整的电商购物流程，包括商品浏览、购物车管理、订单处理和支付功能。
