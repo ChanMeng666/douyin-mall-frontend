@@ -6,7 +6,7 @@
 支持商品浏览、购物车管理、订单处理、在线支付等完整购物流程。<br/>
 提供响应式设计，支持多种支付方式，**免费**开源项目。
 
-[在线演示][demo-link] · [更新日志][changelog] · [开发文档][docs] · [问题反馈][github-issues-link]
+[在线演示][demo-link] · [更新日志][changelog] · [开发文档][docs] · [问题反馈][github-issues-link] · [English](./README_EN.md)
 
 <br/>
 
