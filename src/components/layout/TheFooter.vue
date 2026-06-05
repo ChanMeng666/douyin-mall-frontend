@@ -56,6 +56,14 @@
     </div>
     <div class="footer-bottom">
       <p>&copy; 2024 抖音商城. All rights reserved.</p>
+      <!-- Developer brand credit — Chan Meng -->
+      <p class="dev-credit">
+        <a href="https://github.com/ChanMeng666" target="_blank" rel="noopener noreferrer">
+          <img src="/brand/chan-meng-monkey.svg" alt="Chan Meng" class="dev-logo" />
+          <span>Built by Chan Meng — need a custom app like this one?</span>
+        </a>
+        <a href="mailto:chanmeng.dev@gmail.com">chanmeng.dev@gmail.com</a>
+      </p>
     </div>
   </footer>
 </template>
@@ -115,5 +123,33 @@
 .footer-bottom p {
   color: #999;
   font-size: 0.9rem;
+}
+
+.dev-credit {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.dev-credit a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #888;
+  text-decoration: none;
+  font-size: 0.8rem;
+  transition: color 0.2s;
+}
+
+.dev-credit a:hover {
+  color: #333;
+}
+
+.dev-logo {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
 }
 </style>
